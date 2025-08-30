@@ -7,19 +7,42 @@ import {useAside} from '~/components/Aside';
  * @param {HeaderProps}
  */
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
-  const {shop, menu} = header;
+  const {shop} = header;
   return (
     <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
-      </NavLink>
-      <HeaderMenu
-        menu={menu}
-        viewport="desktop"
-        primaryDomainUrl={header.shop.primaryDomain.url}
-        publicStoreDomain={publicStoreDomain}
-      />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      <div className="header-inner">
+        <NavLink prefetch="intent" to="/" className="header-logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="15" stroke="currentColor" strokeWidth="2"/>
+            <path d="M16 8V16L20 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <circle cx="16" cy="16" r="3" fill="#40E0D0"/>
+          </svg>
+          <span>PureBrush</span>
+        </NavLink>
+        
+        <nav className="header-nav">
+          <NavLink to="/#features" className="header-nav-link">
+            Funksjoner
+          </NavLink>
+          <NavLink to="/#how-it-works" className="header-nav-link">
+            Hvordan det fungerer
+          </NavLink>
+          <NavLink to="/#testimonials" className="header-nav-link">
+            Kundeomtaler
+          </NavLink>
+          <NavLink to="/#faq" className="header-nav-link">
+            FAQ
+          </NavLink>
+        </nav>
+        
+        <div className="header-actions">
+          <HeaderMenuMobileToggle />
+          <CartToggle cart={cart} />
+          <button className="btn-primary">
+            Kjøp nå
+          </button>
+        </div>
+      </div>
     </header>
   );
 }
@@ -41,43 +64,35 @@ export function HeaderMenu({
   const className = `header-menu-${viewport}`;
   const {close} = useAside();
 
+  // Norwegian menu items for mobile
+  const norwegianMenuItems = [
+    { id: '1', title: 'Hjem', url: '/' },
+    { id: '2', title: 'Funksjoner', url: '/#features' },
+    { id: '3', title: 'Hvordan det fungerer', url: '/#how-it-works' },
+    { id: '4', title: 'Kundeomtaler', url: '/#testimonials' },
+    { id: '5', title: 'FAQ', url: '/#faq' },
+    { id: '6', title: 'Kontakt', url: '/contact' },
+  ];
+
   return (
     <nav className={className} role="navigation">
       {viewport === 'mobile' && (
-        <NavLink
-          end
-          onClick={close}
-          prefetch="intent"
-          style={activeLinkStyle}
-          to="/"
-        >
-          Home
-        </NavLink>
+        <div className="mobile-menu-items">
+          {norwegianMenuItems.map((item) => (
+            <NavLink
+              className="header-menu-item"
+              end
+              key={item.id}
+              onClick={close}
+              prefetch="intent"
+              style={activeLinkStyle}
+              to={item.url}
+            >
+              {item.title}
+            </NavLink>
+          ))}
+        </div>
       )}
-      {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
-        if (!item.url) return null;
-
-        // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
-        return (
-          <NavLink
-            className="header-menu-item"
-            end
-            key={item.id}
-            onClick={close}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
-        );
-      })}
     </nav>
   );
 }
@@ -89,14 +104,6 @@ function HeaderCtas({isLoggedIn, cart}) {
   return (
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
-          </Await>
-        </Suspense>
-      </NavLink>
-      <SearchToggle />
       <CartToggle cart={cart} />
     </nav>
   );
@@ -106,10 +113,13 @@ function HeaderMenuMobileToggle() {
   const {open} = useAside();
   return (
     <button
-      className="header-menu-mobile-toggle reset"
+      className="header-menu-mobile-toggle desktop-hidden"
       onClick={() => open('mobile')}
+      aria-label="Meny"
     >
-      <h3>☰</h3>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      </svg>
     </button>
   );
 }
@@ -118,7 +128,10 @@ function SearchToggle() {
   const {open} = useAside();
   return (
     <button className="reset" onClick={() => open('search')}>
-      Search
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="2"/>
+        <path d="M13 13L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      </svg>
     </button>
   );
 }
@@ -143,8 +156,17 @@ function CartBadge({count}) {
           url: window.location.href || '',
         });
       }}
+      className="cart-toggle"
+      aria-label={`Handlekurv med ${count || 0} varer`}
     >
-      Cart {count === null ? <span>&nbsp;</span> : count}
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M3 3H5L7 13H17L19 5H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="9" cy="20" r="1" fill="currentColor"/>
+        <circle cx="15" cy="20" r="1" fill="currentColor"/>
+      </svg>
+      {count !== null && count > 0 && (
+        <span className="cart-count">{count}</span>
+      )}
     </a>
   );
 }
@@ -175,36 +197,36 @@ const FALLBACK_HEADER_MENU = {
       id: 'gid://shopify/MenuItem/461609500728',
       resourceId: null,
       tags: [],
-      title: 'Collections',
+      title: 'Funksjoner',
       type: 'HTTP',
-      url: '/collections',
+      url: '/#features',
       items: [],
     },
     {
       id: 'gid://shopify/MenuItem/461609533496',
       resourceId: null,
       tags: [],
-      title: 'Blog',
+      title: 'Hvordan det fungerer',
       type: 'HTTP',
-      url: '/blogs/journal',
+      url: '/#how-it-works',
       items: [],
     },
     {
       id: 'gid://shopify/MenuItem/461609566264',
       resourceId: null,
       tags: [],
-      title: 'Policies',
+      title: 'Kundeomtaler',
       type: 'HTTP',
-      url: '/policies',
+      url: '/#testimonials',
       items: [],
     },
     {
       id: 'gid://shopify/MenuItem/461609599032',
       resourceId: 'gid://shopify/Page/92591030328',
       tags: [],
-      title: 'About',
+      title: 'FAQ',
       type: 'PAGE',
-      url: '/pages/about',
+      url: '/#faq',
       items: [],
     },
   ],
@@ -219,9 +241,64 @@ const FALLBACK_HEADER_MENU = {
 function activeLinkStyle({isActive, isPending}) {
   return {
     fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'black',
+    color: isPending ? '#40E0D0' : undefined,
   };
 }
+
+/* Additional header styles */
+const headerStyles = `
+  .cart-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  
+  .cart-toggle:hover {
+    color: var(--color-primary);
+  }
+  
+  .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+  }
+  
+  .header-menu-mobile-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-secondary);
+    transition: color var(--transition-fast);
+  }
+  
+  .header-menu-mobile-toggle:hover {
+    color: var(--color-primary);
+  }
+  
+  .header-nav-link {
+    color: var(--color-dark-gray);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+  
+  .header-nav-link:hover {
+    color: var(--color-primary);
+  }
+`;
 
 /** @typedef {'desktop' | 'mobile'} Viewport */
 /**

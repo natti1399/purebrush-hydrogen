@@ -54,6 +54,19 @@ export function links() {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.googleapis.com',
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap',
+    },
     {rel: 'icon', type: 'image/svg+xml', href: favicon},
   ];
 }
@@ -97,17 +110,33 @@ export async function loader(args) {
 async function loadCriticalData({context}) {
   const {storefront} = context;
 
-  const [header] = await Promise.all([
-    storefront.query(HEADER_QUERY, {
-      cache: storefront.CacheLong(),
-      variables: {
-        headerMenuHandle: 'main-menu', // Adjust to your header menu handle
-      },
-    }),
-    // Add other queries here, so that they are loaded in parallel
-  ]);
+  try {
+    const [header] = await Promise.all([
+      storefront.query(HEADER_QUERY, {
+        cache: storefront.CacheLong(),
+        variables: {
+          headerMenuHandle: 'main-menu', // Adjust to your header menu handle
+        },
+      }),
+      // Add other queries here, so that they are loaded in parallel
+    ]);
 
-  return {header};
+    return {header};
+  } catch (error) {
+    console.error('Error loading critical data:', error);
+    // Return mock data to prevent the app from crashing
+    return {
+      header: {
+        shop: {
+          name: 'PureBrush',
+          primaryDomain: {
+            url: 'https://purebrush.no',
+          },
+        },
+        menu: null,
+      },
+    };
+  }
 }
 
 /**
@@ -129,12 +158,25 @@ function loadDeferredData({context}) {
     })
     .catch((error) => {
       // Log query errors, but don't throw them so the page can still render
-      console.error(error);
+      console.error('Footer query error:', error);
       return null;
     });
+  
+  // Handle cart errors gracefully
+  const cartPromise = cart.get().catch((error) => {
+    console.error('Cart error:', error);
+    return null;
+  });
+  
+  // Handle customer account errors gracefully
+  const isLoggedInPromise = customerAccount.isLoggedIn().catch((error) => {
+    console.error('Customer account error:', error);
+    return false;
+  });
+  
   return {
-    cart: cart.get(),
-    isLoggedIn: customerAccount.isLoggedIn(),
+    cart: cartPromise,
+    isLoggedIn: isLoggedInPromise,
     footer,
   };
 }
@@ -148,10 +190,12 @@ export function Layout({children}) {
   const data = useRouteLoaderData('root');
 
   return (
-    <html lang="en">
+    <html lang="no">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="description" content="PureBrush UV-C tannbørsteholder dreper 99.9% av bakterier på 3 minutter. Premium kvalitet, 2 års garanti, fri frakt i Norge." />
+        <title>PureBrush - UV Tannbørsteholder | 99.9% Bakteriefri</title>
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
         <Meta />
