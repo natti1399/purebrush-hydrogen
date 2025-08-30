@@ -11,21 +11,11 @@ import {TrustBadges} from '~/components/TrustBadges';
  */
 export const meta = () => {
   return [
-    {title: 'PureBrush - UV Tannbørsteholder | 99.9% Bakteriefri | Norge'},
-    {name: 'description', content: 'PureBrush UV-C tannbørsteholder dreper 99.9% av bakterier på 3 minutter. Premium kvalitet, 2 års garanti, fri frakt i Norge. Bestill nå og spar 30%!'},
-    {name: 'keywords', content: 'UV tannbørsteholder, antibakteriell, tannbørste sterilisator, UV-C teknologi, tannhygiene, Norge'},
-    {name: 'robots', content: 'index, follow'},
-    {name: 'author', content: 'PureBrush Norge'},
-    {property: 'og:title', content: 'PureBrush - UV Tannbørsteholder | 99.9% Bakteriefri'},
-    {property: 'og:description', content: 'Dreper 99.9% av bakterier på 3 minutter med UV-C teknologi. Fri frakt og 2 års garanti.'},
-    {property: 'og:image', content: 'https://purebrush.no/images/products/main-product.png'},
-    {property: 'og:url', content: 'https://purebrush.no'},
-    {property: 'og:type', content: 'website'},
-    {property: 'og:locale', content: 'nb_NO'},
-    {name: 'twitter:card', content: 'summary_large_image'},
-    {name: 'twitter:title', content: 'PureBrush - UV Tannbørsteholder'},
-    {name: 'twitter:description', content: 'Dreper 99.9% av bakterier på 3 minutter med UV-C teknologi'},
-    {name: 'twitter:image', content: 'https://purebrush.no/images/products/main-product.png'},
+    {title: 'PureBrush - UV Tannbørsteholder | 99.9% Bakteriefri'},
+    {name: 'description', content: 'PureBrush UV-C tannbørsteholder dreper 99.9% av bakterier på 3 minutter. Premium kvalitet, 2 års garanti, fri frakt i Norge.'},
+    {property: 'og:title', content: 'PureBrush - UV Tannbørsteholder'},
+    {property: 'og:description', content: 'Dreper 99.9% av bakterier på 3 minutter med UV-C teknologi'},
+    {property: 'og:image', content: '/images/products/main-product.png'},
   ];
 };
 
