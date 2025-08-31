@@ -1,0 +1,30 @@
+{
+  "exact": {
+    "A million less things to worry about": "En million færre ting å bekymre seg for",
+    "From outer space to your bathroom space": "Fra verdensrommet til baderommet ditt",
+    "Works in 3 minutes": "Ferdig på 3 minutter",
+    "Place the top of your brush inside Bril, close the lid, and watch the blue UV light get its zap on.": "Sett toppen av tannbørsten inn i Bril, lukk lokket, og se det blå UV‑lyset gjøre jobben.",
+    "Fits every size toothbrush": "Passer alle tannbørstestørrelser",
+    "Bril is family friendly. It’s perfect for kids, adults and everyone in between.": "Bril er familievennlig. Perfekt for barn, voksne og alle imellom.",
+    "Portable & hangable": "Bærbar og opphengbar",
+    "Your Bril includes a powerful magnet so you can hang it wherever you’d like. Available in 3 colors to match the style of other modern products in your home.": "Bril har en kraftig magnet som lar deg henge den hvor du vil. Tilgjengelig i tre farger for å matche stilen til andre moderne produkter i hjemmet.",
+    "USB charging": "USB‑lading",
+    "One full charge and Bril is good to go for a month. When the blue light turns red, simply plug in included USB and charge it like you would your other smart devices.": "Én full opplading og Bril er klar i en måned. Når det blå lyset blir rødt, plugger du inn den medfølgende USB‑kabelen og lader som andre smarte enheter.",
+    "Get yours starting at $29.99": "Kjøp nå – 499,- NOK",
+    "The same technology used to clean hospitals, airports, schools and the International Space Station can sterilize your toothbrush every day. Order your Bril and start letting UV light work for your health.": "Den samme teknologien som brukes til å rengjøre sykehus, flyplasser, skoler og Den internasjonale romstasjonen kan sterilisere tannbørsten din hver dag. Bestill Bril og la UV‑lyset jobbe for helsen din.",
+    "Place the top of your brush inside PureBrush, close the lid, and watch the blue UV light get its zap on.": "Sett toppen av tannbørsten inn i PureBrush, lukk lokket og se det blå UV-lyset gjøre jobben.",
+    "Your PureBrush includes a powerful magnet so you can hang it wherever you’d like. Available in 3 colors to match the style of other modern products in your home.": "PureBrush har en kraftig magnet som lar deg henge den hvor du vil. Tilgjengelig i 3 farger for å matche stilen til andre moderne produkter i hjemmet.",
+    "One full charge and PureBrush is good to go for a month. When the blue light turns red, simply plug in included USB and charge it like you would your other smart devices.": "Én full opplading og PureBrush er klar i en måned. Når det blå lyset blir rødt, plugger du inn den medfølgende USB-kabelen og lader den som andre smarte enheter.",
+    "PureBrush is family friendly. It’s perfect for kids, adults and everyone in between.": "PureBrush er familievennlig. Perfekt for barn, voksne og alle imellom."
+  },
+  "regex": [
+    {"re": "A million less things to worry about", "flags": "i", "to": "En million færre ting å bekymre seg for"},
+    {"re": "In environments that absolutely have to be clean, professionals from doctors to astronauts trust UV[-–]C light to kill millions of germs in minutes\\.[\\r\\n\\s]*Now you can bring this next generation technology into your home to disinfect your toothbrush and promote your family’s? overall health\\.", "flags": "i", "to": "I miljøer som absolutt må være rene, stoler fagfolk fra leger til astronauter på UV‑C‑lys for å drepe millioner av bakterier på få minutter. Nå kan du ta denne neste generasjons teknologien hjem for å desinfisere tannbørsten og fremme familiens generelle helse."},
+    {"re": "From outer space to your bathroom space", "flags": "i", "to": "Fra verdensrommet til baderommet ditt"},
+    {"re": "The same technology used to clean hospitals, airports, schools and the International Space Station can sterilize your toothbrush every day\\.[\\r\\n\\s]*Order your Bril and start letting UV light work for your health\\.", "flags": "i", "to": "Den samme teknologien som brukes til å rengjøre sykehus, flyplasser, skoler og Den internasjonale romstasjonen kan sterilisere tannbørsten din hver dag. Bestill Bril og la UV‑lyset jobbe for helsen din."},
+    {"re": "Place the top of your brush inside PureBrush,?\\s*close the lid,?\\s*and watch the blue UV light get its zap on\\.", "flags": "i", "to": "Sett toppen av tannbørsten inn i PureBrush, lukk lokket og se det blå UV-lyset gjøre jobben."},
+    {"re": "PureBrush is family friendly\\.? It’s perfect for kids, adults and everyone in between\\.", "flags": "i", "to": "PureBrush er familievennlig. Perfekt for barn, voksne og alle imellom."},
+    {"re": "Your PureBrush includes a powerful magnet so you can hang it wherever you’d like\\. Available in 3 colors to match the style of other modern products in your home\\.", "flags": "i", "to": "PureBrush har en kraftig magnet som lar deg henge den hvor du vil. Tilgjengelig i 3 farger for å matche stilen til andre moderne produkter i hjemmet."},
+    {"re": "One full charge and PureBrush is good to go for a month\\. When the blue light turns red, simply plug in included USB and charge it like you would your other smart devices\\.", "flags": "i", "to": "Én full opplading og PureBrush er klar i en måned. Når det blå lyset blir rødt, plugger du inn den medfølgende USB-kabelen og lader den som andre smarte enheter."}
+  ]
+}

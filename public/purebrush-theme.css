@@ -1,0 +1,172 @@
+/* PureBrush brand theme overlay – non-destructive overrides */
+:root {
+  --pb-primary: #00C7D9;       /* brand teal-blue */
+  --pb-primary-600: #0FA2B5;  /* darker hover */
+  --pb-primary-300: #84DFEA;  /* accent tint */
+  --pb-primary-200: #B8EEF5;  /* lighter ring */
+  --pb-primary-100: #DFF7FB;  /* lightest ring */
+  --pb-text: #0F172A;         /* near-black */
+
+  /* Override site vars if used */
+  --bs-bril: var(--pb-primary);
+  --bs-bril-green: var(--pb-primary-600);
+  --bs-bril-rgb: 0, 199, 217;
+  --bs-bril-green-rgb: 15, 162, 181;
+  --swiper-theme-color: var(--pb-primary);
+}
+
+/* Buttons */
+.btn.btn-bril,
+.btn-bril {
+  background-color: var(--pb-primary) !important;
+  border-color: var(--pb-primary) !important;
+  color: #fff !important;
+}
+.btn.btn-bril:hover,
+.btn-bril:hover {
+  background-color: var(--pb-primary-600) !important;
+  border-color: var(--pb-primary-600) !important;
+}
+
+/* Links */
+a { color: var(--pb-primary-600); }
+a:hover { color: var(--pb-primary); text-decoration: underline; }
+
+/* Text accents that were green */
+.text-bril-green { color: var(--pb-primary) !important; }
+
+/* Misc accents where background used the old mint */
+.bg-bril,
+.badge-bril,
+.chip-bril { background-color: var(--pb-primary) !important; }
+
+/* Subtle background panels (if any) */
+.panel-bril,
+.card-bril,
+.section-accent { background-color: var(--pb-primary-100) !important; }
+
+/* Accessibility: focus outline uses brand */
+:focus-visible { outline: 2px solid var(--pb-primary-600); outline-offset: 2px; }
+
+/* Enlarge brand logo */
+.navbar-brand.logo img { height: 110px !important; width: auto !important; }
+@media (max-width: 767px) {
+  .navbar-brand.logo img { height: 60px !important; }
+}
+
+/* Ensure any logo-light image is readable */
+img.logo-light { height: 110px !important; width: auto !important; }
+@media (max-width: 767px) { img.logo-light { height: 60px !important; } }
+
+/* Allow navbar to grow with larger logo */
+.navbar { position: relative; min-height: 88px; padding-top: 10px; padding-bottom: 10px; border-bottom: 0 !important; }
+.navbar > .container-xxl, .navbar > .container-fluid { align-items: center; }
+
+/* Keep header compact, keep logo inside flow */
+/* Fixed header height, larger visual logo via overflow-crop */
+.navbar-brand.logo { position: relative; display: inline-flex; align-items: center; gap: 10px; height: 56px; overflow: hidden; }
+.navbar-brand.logo img, .logo .logo-light { position: relative !important; height: 96px !important; width: auto !important; display: inline-block; }
+@media (max-width: 767px) { .navbar-brand.logo { height: 56px; } .navbar-brand.logo img, .logo .logo-light { height: 80px !important; } }
+
+/* Wordmark for better readability at small header heights */
+/* Wordmark styles retained but no longer injected */
+
+/* Section-specific overrides present in the mirrored CSS */
+.section-5 .headline,
+.section-7 #sec7-right #headline { color: var(--pb-primary) !important; }
+.headline, #headline { color: var(--pb-primary) !important; }
+.section-6 { background-color: var(--pb-primary-100) !important; color: var(--pb-text) !important; }
+.section-6 .sec6-txt { color: var(--pb-text) !important; }
+
+/* Outline style buttons using site class */
+.btn-outline-bril,
+.checkout-section-1 label,
+.shop-section-1 .bundles label {
+  color: var(--pb-primary) !important;
+  border-color: var(--pb-primary) !important;
+}
+.btn-outline-bril:hover,
+.checkout-section-1 label:hover,
+.shop-section-1 .bundles label:hover {
+  background-color: var(--pb-primary) !important;
+  border-color: var(--pb-primary) !important;
+  color: #fff !important;
+}
+
+/* White pill with brand text */
+.btn.btn-white.btn-pill.text-bril { color: var(--pb-primary) !important; border-color: var(--pb-primary) !important; }
+
+/* Green variants in the original CSS */
+.btn-bril-green { background-color: var(--pb-primary) !important; border-color: var(--pb-primary) !important; color: #fff !important; }
+.btn-outline-bril-green { color: var(--pb-primary) !important; border-color: var(--pb-primary) !important; }
+.btn-outline-bril-green:hover { background-color: var(--pb-primary) !important; border-color: var(--pb-primary) !important; color: #fff !important; }
+.btn-ghost-bril-green { color: var(--pb-primary) !important; }
+.link-bril-green { color: var(--pb-primary) !important; }
+.border-bril-green { border-color: var(--pb-primary) !important; }
+.swiper-button-bril-green, .swiper-pagination-bril-green { --swiper-navigation-color: var(--pb-primary) !important; --swiper-pagination-color: var(--pb-primary) !important; }
+/* Hybrid: stronger brand + bigger logo + kill mint */
+:root{--pb-primary:#00C7D9;--pb-primary-600:#0FA2B5;--pb-primary-100:#DFF7FB;--bs-bril:var(--pb-primary);--bs-bril-green:var(--pb-primary-600);--bs-bril-rgb:0,199,217;--bs-bril-green-rgb:15,162,181}
+.navbar-brand.logo img,.navbar .navbar-brand img,header .logo img,.navbar-brand img{height:84px!important;max-height:84px!important;width:auto!important}
+@media(max-width:767px){.navbar-brand.logo img,.navbar .navbar-brand img,header .logo img,.navbar-brand img{height:58px!important;max-height:58px!important}}
+.text-bril-green,.text-success{color:var(--pb-primary)!important}
+[style*="#8EDDD6"],[style*="#6FBB72"],[fill="#8EDDD6"],[fill="#6FBB72"]{color:var(--pb-primary)!important;fill:var(--pb-primary)!important}
+.headline{color:var(--pb-primary)!important}
+.section-6{background-color:var(--pb-primary-100)!important;color:#0F172A!important}
+.btn-bril,.btn.btn-bril{background:var(--pb-primary)!important;border-color:var(--pb-primary)!important;color:#fff!important}
+.btn-bril:hover,.btn.btn-bril:hover{background:var(--pb-primary-600)!important;border-color:var(--pb-primary-600)!important}
+
+/* --- PureBrush Fixes: mobile backgrounds + layout spacing --- */
+/* Remove any legacy artwork backgrounds and enforced heights on content sections */
+/* Kill Section 3 background (was showing Bril product) and let height be natural */
+.section-3 {
+    background-image: url('/images/bathroom-background.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: white;
+}
+
+.section-3 .content {
+    position: relative;
+    z-index: 2;
+}
+
+.section-3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+/* Remove decorative circle/ring backgrounds below hero on mobile and desktop */
+.section-5,.section-8{background:none!important}
+/* Also clear possible hero-image circles on How page */
+.how-section-2 .hero-image{background:none!important}
+
+/* Tighten up gap between hero and next section on small screens */
+@media(max-width:767px){
+  .section-3{padding-top:1.25rem!important;padding-bottom:1.25rem!important}
+}
+
+/* Add safe spacing between image and text on Section 4 (desktop) */
+@media(min-width:768px){
+  #section-4 .row{column-gap:2rem}
+  #section-4 .img-ws{margin-right:1rem}
+}
+
+/* Robust restore for Section 4 image (use CSS background to avoid broken <picture> srcset) */
+#section-4 .row > .col-md-6:first-child{
+  background: url('/images/smile-clean.webp') center/cover no-repeat;
+  min-height: 360px;
+  border-radius: 12px;
+}
+#section-4 .row > .col-md-6:first-child picture,
+#section-4 .row > .col-md-6:first-child img{
+  display: none !important;
+}
+@media(max-width:767px){
+  #section-4 .row > .col-md-6:first-child{ min-height: 220px; margin-bottom: 1rem; }
+}

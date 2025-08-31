@@ -1,0 +1,23 @@
+
+> purebrush-hydrogen@2025.5.1 preview
+> shopify hydrogen preview --build
+
+node:os:311
+    throw new ERR_SYSTEM_ERROR(ctx);
+          ^
+
+SystemError [ERR_SYSTEM_ERROR]: A system error occurred: uv_os_get_passwd returned ENOENT (no such file or directory)
+    at Object.userInfo (node:os:311:11)
+    at file:///Users/jeshiseifo/Desktop/purebrush-hydrogen/node_modules/@shopify/cli/dist/chunk-HYECXSZG.js:9182:55 {
+  code: 'ERR_SYSTEM_ERROR',
+  info: {
+    errno: -2,
+    code: 'ENOENT',
+    message: 'no such file or directory',
+    syscall: 'uv_os_get_passwd'
+  },
+  errno: [Getter/Setter],
+  syscall: [Getter/Setter]
+}
+
+Node.js v20.19.4
